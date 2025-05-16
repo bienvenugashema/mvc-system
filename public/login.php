@@ -2,7 +2,7 @@
 session_start();
 if(isset($_POST['submit'])) {
     include_once '../config/db.php';
-
+    include_once '../config/notifications.php'; // this is the notification control file
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -24,11 +24,12 @@ if(isset($_POST['submit'])) {
                 exit();
             }
         } else {
-            echo "<script>alert('Invalid email or password');</script>";
+            addError('Invalid email or password');
         }
-    }
+        }
+    
 
-    if ($result->num_rows > 0) {
+
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             session_start();
@@ -36,12 +37,13 @@ if(isset($_POST['submit'])) {
             header("Location: ../user/dashboard.php");
             exit();
         } else {
-            echo "<script>alert('Invalid email or password');</script>";
+            addError('Invalid email or password');
         }
     }
-}
+    
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -66,7 +68,10 @@ if(isset($_POST['submit'])) {
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign in</p>
+                
 
+                <?php include_once '../config/notifications.php'; ?>
+                <?php displayMessages(); ?>
                 <form class="mx-1 mx-md-4" method="post" action="login.php">
 
                   <div class="d-flex flex-row align-items-center mb-4">
