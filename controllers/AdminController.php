@@ -1,0 +1,2 @@
+<?php
+// AdminController.php

@@ -1,0 +1,2 @@
+<?php
+// ComplaintController.php

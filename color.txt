@@ -1,0 +1,9 @@
+| Purpose           | Color                        | Hex Code               |
+| ----------------- | ---------------------------- | ---------------------- |
+| **Primary**       | Blue (Trust, Authority)      | `#2F80ED`              |
+| **Secondary**     | Dark Blue (Depth)            | `#1C3D5A`              |
+| **Accent**        | Teal (Balance, Fresh)        | `#27AE60`              |
+| **Warning/Error** | Red (For error messages)     | `#EB5757`              |
+| **Success**       | Green (For success messages) | `#6FCF97`              |
+| **Neutral Text**  | Dark Gray                    | `#333333`              |
+| **Background**    | Light Gray or White          | `#F9F9F9` or `#FFFFFF` |
