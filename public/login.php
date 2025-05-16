@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['submit'])) {
     include_once '../config/db.php';
 
@@ -31,7 +32,7 @@ if(isset($_POST['submit'])) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             session_start();
-            $_SESSION['email'] = $email;
+            $_SESSION['user_email'] = $email;
             header("Location: ../user/dashboard.php");
             exit();
         } else {
