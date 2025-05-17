@@ -15,11 +15,11 @@ if(isset($_POST['submit'])) {
         if ($password == $row['password']) {
             session_start();
             if ($row['role'] == 'admin') {
-                $_SESSION['admin_role'] = 'admin';
+                $_SESSION['admin_email'] = $row['email'];
                 header("Location: ../admin/dashboard.php");
                 exit();
-            } else {
-                $_SESSION['sudo_role'] = 'user';
+            } else if( $row['role'] == 'sudo') {
+                $_SESSION['sudo_email'] = $row['email'];
                 header("Location: ../sudo/dashboard.php");
                 exit();
             }

@@ -73,12 +73,18 @@ if ($complaints_result->num_rows > 0) {
     echo "<table class='table'>";
     echo "<tr><th>Ticket ID</th><th>Title</th><th>Status</th><th>Actions</th></tr>";
     while ($complaint = $complaints_result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $complaint['ticket_id'] . "</td>";
-        echo "<td>" . $complaint['title'] . "</td>";
-        echo "<td>" . $complaint['status'] . "</td>";
-        echo "<td><a href='edit_complaint.php?id=" . $complaint['id'] . "'>Edit</a> <a href='delete_complaint.php?id=" . $complaint['id'] . "' >Delete</a></td>";
-        echo "</tr>";
+        ?>
+        <tr>
+        <td><?php echo $complaint['ticket_id']; ?></td>
+        <td><?php echo $complaint['title']; ?></td>
+        <td><?php echo $complaint['status']; ?></td>
+        <td><a href='edit_complaint.php?id=<?php echo $complaint['id']; ?>'>Edit</a> <a href='delete_complaint.php?id=<?php echo $complaint['id']; ?>'>Delete</a>  
+        <?php if ($complaint['status'] == 'resolved'): ?>
+        <a href='view_response.php?id=<?php echo $complaint['id']; ?>'>View response</a>
+        <?php endif; ?>
+        </td>
+        </tr>
+        <?php
     }
     echo "</table>";
 } else {

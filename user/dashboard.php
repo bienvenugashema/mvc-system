@@ -90,6 +90,7 @@ if(isset($_SESSION['user_email'])) {
                 </ul>
                 <!-- Right elements -->
                 <div class="d-flex align-items-center">
+                    <a class="nav-link" href="update_settings.php" style="margin: 0 10px;">Settings</a>
                     <a class="nav-link" href="view_status.php" style="margin: 0 10px;">View Feedback</a>
                     <a href="../public/logout.php">Logout</a>
                 </div>
