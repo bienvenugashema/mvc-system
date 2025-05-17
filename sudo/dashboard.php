@@ -1,5 +1,5 @@
 <?php
-session_start();
+    include 'chatbot.php'; 
 if(!isset($_SESSION['sudo_email'])){
     header("Location: ../public/login.php");
     exit();
@@ -7,7 +7,7 @@ if(!isset($_SESSION['sudo_email'])){
 
 // Include the database connection file
 include_once '../config/db.php';
-include_once '../config/notifications.php'; 
+include_once '../config/notifications.php';
 $email = $_SESSION['sudo_email'];
 $sql = "SELECT * FROM admins WHERE email='$email'";
 $result = $conn->query($sql);
@@ -54,10 +54,52 @@ $admin = $result->fetch_assoc();
         </div>
     </nav>
 
-    <!-- Add your content here -->
-    <?php
-    // Display notifications
-    //displayNotifications();
-    ?>
+<div class="card mt-4" id="chatbotCard">
+    <div class="card-header bg-secondary text-white">
+        AI Chat Assistant
+    </div>
+    <div class="card-body">
+        <div id="chatLog" style="height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
+        <form id="chatForm" class="mt-3">
+            <div class="input-group">
+                <input type="text" id="userMessage" class="form-control" placeholder="Ask a question..." required>
+                <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+        </form>
+        <div class="mt-3">
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $message = $_POST['message'];
+                $escaped = escapeshellarg($message);
+                $output = shell_exec("python3 ai/mode.py $escaped");
+                echo "<strong>Response:</strong> " . nl2br(htmlspecialchars($output));
+            }
+            ?>
+        </div>
+    </div>
+</div>
+<script>
+
+document.getElementById("chatForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const userInput = document.getElementById("userMessage").value;
+    const chatLog = document.getElementById("chatLog");
+
+    chatLog.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
+
+    fetch("chatbot.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `message=${encodeURIComponent(userInput)}`
+    })
+    .then(response => response.text())
+    .then(reply => {
+        chatLog.innerHTML += `<div><strong>AI:</strong> ${reply}</div>`;
+        chatLog.scrollTop = chatLog.scrollHeight;
+    });
+
+    document.getElementById("userMessage").value = "";
+});
+</script>
 </body>
 </html>
