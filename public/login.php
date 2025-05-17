@@ -12,7 +12,7 @@ if(isset($_POST['submit'])) {
     $admin_result = $conn->query($admin_sql);
     if ($admin_result && $admin_result->num_rows > 0) {
         $row = $admin_result->fetch_assoc();
-        if ($password == $row['password']) {
+        if (password_verify($password, $row['password'])) {
             session_start();
             if ($row['role'] == 'admin') {
                 $_SESSION['admin_email'] = $row['email'];
