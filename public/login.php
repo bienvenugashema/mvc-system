@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+// Autoload PHPMailer classes
+require '../vendor/autoload.php';
+
+$mail = new PHPMailer(true);
+
 if(isset($_POST['submit'])) {
     include_once '../config/db.php';
     include_once '../config/notifications.php'; // this is the notification control file
@@ -13,23 +22,36 @@ if(isset($_POST['submit'])) {
     if ($admin_result && $admin_result->num_rows > 0) {
         $row = $admin_result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            session_start();
-            if ($row['role'] == 'admin') {
-                $_SESSION['admin_email'] = $row['email'];
-                header("Location: ../admin/dashboard.php");
+            $otp = rand(100000, 999999);
+            $otp_hash = password_hash($otp, PASSWORD_DEFAULT);
+            $insert_otp = "update admins set otp_code='$otp_hash' where email='$email'";
+            $result = $conn->query($insert_otp);
+
+            if ($result) {
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+                $mail->SMTPAuth = true;
+                $mail->Username = 'bienvenugashema@gmail.com';
+                $mail->Password = 'ckgp iujo nveh yuex';
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+
+                // Recipients
+                $mail->setFrom('bienvenugashema@gmail.com', 'Mwimule Bienvenu');
+                $mail->addAddress($email);
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Your OTP Code';
+                $mail->Body = "Your OTP code is: $otp";
+                $mail->AltBody = "Your OTP code is: $otp";
+                $mail->send();
+                $_SESSION['id'] = $row['id'];
+                header("Location: verify_otp.php");
                 exit();
-            } else if( $row['role'] == 'sudo') {
-                $_SESSION['sudo_email'] = $row['email'];
-                header("Location: ../sudo/dashboard.php");
-                exit();
+
             }
-        } else {
-            addError('Invalid email or password');
+          }
         }
-        }
-    
-
-
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             session_start();

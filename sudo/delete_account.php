@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['sudo_email'])){
-    header("Location: ../login.php");
+    header("Location: ../public/login.php");
     exit();
 }
 
