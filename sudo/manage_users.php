@@ -167,14 +167,12 @@ include_once '../config/notifications.php';
                 <li class="nav-item">
                     <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="manage_notifications.php">Manage Notifications</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.php">Logout</a>
+                    <a class="nav-link" href="../public/logout.php">Logout</a>
                 </li>
             </ul>
         </div>

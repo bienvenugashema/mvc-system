@@ -1,7 +1,9 @@
 <?php
-    include 'chatbot.php'; 
+session_start();
+    // include 'chatbot.php'; 
 if(!isset($_SESSION['sudo_email'])){
     header("Location: ../public/login.php");
+    // echo "Not logged in";
     exit();
 }
 
@@ -41,9 +43,7 @@ $admin = $result->fetch_assoc();
                 <li class="nav-item">
                     <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="manage_notifications.php">Manage Notifications</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
@@ -55,51 +55,37 @@ $admin = $result->fetch_assoc();
     </nav>
 
 <div class="card mt-4" id="chatbotCard">
-    <div class="card-header bg-secondary text-white">
-        AI Chat Assistant
-    </div>
+    
+    <div class="card mt-4">
+    <div class="card-header">AI Assistant</div>
     <div class="card-body">
-        <div id="chatLog" style="height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
-        <form id="chatForm" class="mt-3">
-            <div class="input-group">
-                <input type="text" id="userMessage" class="form-control" placeholder="Ask a question..." required>
-                <button class="btn btn-primary" type="submit">Send</button>
-            </div>
-        </form>
-        <div class="mt-3">
-            <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $message = $_POST['message'];
-                $escaped = escapeshellarg($message);
-                $output = shell_exec("python3 ai/mode.py $escaped");
-                echo "<strong>Response:</strong> " . nl2br(htmlspecialchars($output));
-            }
-            ?>
-        </div>
+        <div id="chat-box" style="height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;"></div>
+        <input type="text" id="user-input" class="form-control mt-2" placeholder="Ask a question...">
+        <button onclick="sendMessage()" class="btn btn-primary mt-2">Send</button>
     </div>
 </div>
+</div>
 <script>
+function sendMessage() {
+    const input = document.getElementById('user-input');
+    const message = input.value.trim();
+    if (message === '') return;
 
-document.getElementById("chatForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const userInput = document.getElementById("userMessage").value;
-    const chatLog = document.getElementById("chatLog");
+    const chatBox = document.getElementById('chat-box');
+    chatBox.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
 
-    chatLog.innerHTML += `<div><strong>You:</strong> ${userInput}</div>`;
-
-    fetch("chatbot.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: `message=${encodeURIComponent(userInput)}`
+    fetch('chatbot.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'message=' + encodeURIComponent(message)
     })
-    .then(response => response.text())
-    .then(reply => {
-        chatLog.innerHTML += `<div><strong>AI:</strong> ${reply}</div>`;
-        chatLog.scrollTop = chatLog.scrollHeight;
+    .then(res => res.text())
+    .then(data => {
+        chatBox.innerHTML += `<div><strong>AI:</strong> ${data}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        input.value = '';
     });
-
-    document.getElementById("userMessage").value = "";
-});
+}
 </script>
 </body>
 </html>

@@ -28,14 +28,11 @@ if(isset($_SESSION['user_email'])) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo" loading="lazy"/>
                     </a>
                     <ul class="navbar-nav
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard.php">Complaint</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Dashboard</a>
+                            <a class="nav-link" href="dashboard.php">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <span class="nav-link"><?php echo $email; ?></span>

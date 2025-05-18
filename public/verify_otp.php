@@ -18,6 +18,9 @@ if(isset($_POST['submit_otp'])) {
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($otp, $row['otp_code'])) {
+            // to delete the otp from database
+            $delete_otp = "UPDATE admins SET otp_code=NULL WHERE id='$id'";
+            $conn->query($delete_otp);
             if($row['role'] == 'admin') {
                 $_SESSION['admin_email'] = $row['email'];
                 header("Location: ../admin/dashboard.php");

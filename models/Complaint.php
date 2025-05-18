@@ -1,2 +1,0 @@
-<?php
-// Complaint.php

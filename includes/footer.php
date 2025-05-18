@@ -1,2 +1,0 @@
-<?php
-// footer.php

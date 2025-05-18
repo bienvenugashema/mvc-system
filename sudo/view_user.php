@@ -42,9 +42,7 @@ if(isset($_GET['id'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="manage_notifications.php">Manage Notifications</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="../public/logout.php">Logout</a>
                     </li>
@@ -111,6 +109,19 @@ if(isset($_GET['id'])) {
                         echo "Not solved yet";
                     }
                 ?></p>
+                <p><strong>Response:</strong> <?php 
+                    $select_admin = "SELECT * FROM replies WHERE complaint_id = ?";
+                    $stmt = $conn->prepare($select_admin);
+                    $stmt->bind_param("i", $complaint['ticket_id']);
+                    $stmt->execute();
+                    $admin_result = $stmt->get_result();
+                    if ($admin_result->num_rows > 0) {
+                        $admin = $admin_result->fetch_assoc();
+                        echo $admin['reply_text'];
+                    } else {
+                        echo "No response yet";
+                    }?>
+                </p>
                 <p><strong>Solved At:</strong> <?php echo $admin['created_at']; ?></p>
             </div>
             <div class="modal-footer">

@@ -63,14 +63,12 @@ if ($result->num_rows > 0) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="reply.php">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Manage Complaints</a>
+                        <a class="nav-link active" aria-current="page" href="../public/logout.php">Log Out</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Settings</a>
-                    </li>
+
                 </ul>
             </div>
         </div>

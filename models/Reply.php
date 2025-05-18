@@ -1,2 +1,0 @@
-<?php
-// Reply.php

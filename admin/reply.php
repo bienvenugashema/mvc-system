@@ -73,12 +73,6 @@ if (isset($_POST['reply_complaint'])) {
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="complaints.php">Complaints</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="replies.php">Replies</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="../public/logout.php">Logout</a>
                     </li>
                 </ul>

@@ -31,7 +31,7 @@ $email = $_SESSION['sudo_email'];
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="dashboard.php">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="manage_users.php">Manage Users</a>
@@ -39,9 +39,7 @@ $email = $_SESSION['sudo_email'];
                 <li class="nav-item">
                     <a class="nav-link" href="manage_admins.php">Manage Admins</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="manage_notifications.php">Manage Notifications</a>
-                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
