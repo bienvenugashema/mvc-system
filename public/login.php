@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
                 $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
                 $mail->SMTPAuth = true;
                 $mail->Username = 'bienvenugashema@gmail.com';
-                $mail->Password = 'ckgp iujo nveh yuex';
+                $mail->Password = 'ckgp iujo nveh yue';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
