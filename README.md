@@ -58,3 +58,9 @@ This project is a **Minimum Viable Product (MVP)** of a Citizen Complaints and E
    ```bash
    git clone https://github.com/bienvenugashema/mvc-system.git
    cd yourproject
+   code .
+2. Tools required :
+   Composer/XAMPP
+   ```bash
+   compose require phpmailer/phpmailer
+      
