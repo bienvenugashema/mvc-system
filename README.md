@@ -3,8 +3,8 @@
 This project is a **Minimum Viable Product (MVP)** of a Citizen Complaints and Engagement System built using PHP and Bootstrap. It is designed to allow citizens to easily submit complaints or feedback about public services, and for government agencies to efficiently respond and manage those complaints.
 
 ---
-##Images
-![Images](https://github.com/bienvenugashema/mvc-system/blob/24b5817046f03a0c03e84487f03e3de7398125c0/Screenshot%202025-05-19%20120805.png)
+## Images
+![Images](https://github.com/bienvenugashema/mvc-system/blob/bf33da3fa95262c7971d93f919b4776a9a062538/sudo_dashboard.png)
 ## 🚀 Features
 
 ### 👤 **User Functionality**
