@@ -4,8 +4,13 @@ This project is a **Minimum Viable Product (MVP)** of a Citizen Complaints and E
 
 ---
 ## Images
-![Images](https://github.com/bienvenugashema/mvc-system/blob/bf33da3fa95262c7971d93f919b4776a9a062538/sudo_dashboard.png)
-![Login_Image](https://github.com/bienvenugashema/mvc-system/blob/4fefd580b499549630c4f9961caeed261f7fc547/login.png)
+
+<img src="https://github.com/bienvenugashema/mvc-system/blob/bf33da3fa95262c7971d93f919b4776a9a062538/sudo_dashboard.png?raw=true" width="600"/>
+
+<br/>
+
+<img src="https://github.com/bienvenugashema/mvc-system/blob/4fefd580b499549630c4f9961caeed261f7fc547/login.png?raw=true" width="600"/>
+
 ## 🚀 Features
 
 ### 👤 **User Functionality**
